@@ -1,1 +1,1 @@
-# Grafika beadandó
+# Hotel folyosó

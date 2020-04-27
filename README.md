@@ -1,1 +1,1 @@
-# grafika
+# Grafika beadandó

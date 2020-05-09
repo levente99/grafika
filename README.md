@@ -9,7 +9,7 @@ A kitömörített mappát az src mellé, a gyökérjegyzékbe kell elhelyezni.
 
 ### Fordítás
 
-Windows és Linux alatt is a `make` paranccsal fordítható a program. A `Makefile`-ban található konfiguráció felismeri a operációs rendszert.
+Windows és Linux alatt is a `make` paranccsal fordítható a program.
 
 ### Használat
 

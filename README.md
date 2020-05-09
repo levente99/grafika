@@ -2,7 +2,7 @@
 
 ### Fordításhoz szükséges modellek és textúrák
 
-https://diakoffice-my.sharepoint.com/:u:/g/personal/makszimuslevente_sulid_hu/EecSW0pev8VHvjpLuJ4D4iUB3gbYlYp7STrOREt5h0QkXQ?e=4Oonp9
+[assets.zip](https://diakoffice-my.sharepoint.com/:u:/g/personal/makszimuslevente_sulid_hu/EecSW0pev8VHvjpLuJ4D4iUB3gbYlYp7STrOREt5h0QkXQ?e=4Oonp9)
 
 
 A kitömörített mappát az src mellé, a gyökérjegyzékébe kell elhelyezni.

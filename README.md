@@ -5,7 +5,7 @@
 [assets.zip](https://diakoffice-my.sharepoint.com/:u:/g/personal/makszimuslevente_sulid_hu/EcDQ1jbDtLJGke3aeitLu3kB0cZUDvBYfsrpLyTETFTRLg?e=BzcTI6)
 
 
-A kitömörített mappát az src mellé, a gyökérjegyzékbe kell elhelyezni.
+A kitömörített mappát az src mellé, a gyökér jegyzékbe kell elhelyezni.
 
 ### Fordítás
 

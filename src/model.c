@@ -19,9 +19,7 @@ void init_object(Object* object, int x, int z, int y)
 	object->material_ambient[3] = 0.5;
 }
 
-/**
- * Loads the texture file with SOIL
- */
+// Loads the texture file with SOIL
 GLuint load_texture(const char* filename) {
 	glPixelStorei(GL_UNPACK_ALIGNMENT,1);
 	GLuint texture_name;
@@ -70,7 +68,7 @@ void init_entities(World* world) {
 
 	// Table
 	load_model(&world->table1.model, "assets/models/table.obj");
-	world->table1.texture = load_texture("assets/textures//Wood_Table_C_2.jpg");
+	world->table1.texture = load_texture("assets/textures//table.jpg");
 	init_object(&world->table1, -120, 20, 25);
 
 	// Table
@@ -78,12 +76,18 @@ void init_entities(World* world) {
 	world->table2.texture = world->table1.texture;
 	init_object(&world->table2, 1900, 20, 15);
 
+	// Window
+	load_model(&world->window.model, "assets/models/window.obj");
+	world->window.texture =  world->chairs[0].texture;
+	init_object(&world->window, 1975, 40, 60);
+
 	// Door
 	load_model(&world->door.model, "assets/models/door2_v2.obj");
 	world->door.texture = load_texture("assets/textures//door.jpg");
 	init_object(&world->door, -120, 170, 0);
 
 	// Corridor
+	world->corridor.sky = load_texture("assets/textures//sky.jpg");
 	world->corridor.ground = load_texture("assets/textures/ground.jpg");
     world->corridor.ceiling = load_texture("assets/textures/ceiling.jpg");
 	world->corridor.back = load_texture("assets/textures//wall.jpg");

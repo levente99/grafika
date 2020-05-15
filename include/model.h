@@ -23,7 +23,7 @@ typedef struct {
 }Object;
 
 typedef struct {
-    int front, back, left, right, ground, ceiling;
+    int front, back, left, right, ground, ceiling, sky;
 }Corridor;
 
 typedef struct {
@@ -32,6 +32,7 @@ typedef struct {
     Object door;
     Object table1;
     Object table2;
+    Object window;
     Object chairs[CHAIR_LENGTH];
 }World;
 

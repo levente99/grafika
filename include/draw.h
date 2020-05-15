@@ -19,6 +19,12 @@ void draw_ceiling(Corridor corridor);
 // Draws the room.
 void draw_walls(Corridor corridor);
 
+// Draws the sky.
+void draw_sky(Corridor corridor);
+
+// Draws the wall where the window is.
+void draw_window_wall(Corridor corridor);
+
 // Draws the help menu
 void draw_help(int texture);
 

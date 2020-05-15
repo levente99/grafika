@@ -28,8 +28,10 @@ void draw_content(World* world)
 
     glPushMatrix();
 		draw_walls(roomToDraw);
+		draw_window_wall(roomToDraw);
 		draw_ground(roomToDraw);
 		draw_ceiling(roomToDraw);
+		draw_sky(roomToDraw);
 	glPopMatrix();
 
 	draw_doors(200, +28, 0);
@@ -97,6 +99,17 @@ void draw_content(World* world)
 		glScalef(5.0f, 5.0f, 5.0f);
 
 		draw_model(&world->table2.model);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(world->window.position.x, world->window.position.y, world->window.position.z);
+		glRotatef(180, 0, 1, 0);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, world->window.material_ambient);
+
+		glBindTexture(GL_TEXTURE_2D, world->window.texture);
+		glScalef(15.0f, 15.0f, 15.0f);
+
+		draw_model(&world->window.model);
     glPopMatrix();
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient_default);
@@ -173,6 +186,81 @@ void draw_ceiling(Corridor corridor) {
 	glEnd();
 }
 
+void draw_window_wall(Corridor corridor) {
+	//right
+	glBindTexture(GL_TEXTURE_2D, corridor.left);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(corridorLength, 0, 200);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(corridorLength, corridorWidth, 200);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(corridorLength, corridorWidth, 28);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(corridorLength, 0, 28);
+	glEnd();
+
+	// left
+	glBindTexture(GL_TEXTURE_2D, corridor.left);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(corridorLength, 0, -200);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(corridorLength, corridorWidth, -200);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(corridorLength, corridorWidth, -34);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(corridorLength, 0, -34);
+	glEnd();
+
+	// up
+	glBindTexture(GL_TEXTURE_2D, corridor.left);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(corridorLength, 157, -200);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(corridorLength, corridorWidth, -200);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(corridorLength, corridorWidth, 200);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(corridorLength, 157, 200);
+	glEnd();
+
+	// down
+	glBindTexture(GL_TEXTURE_2D, corridor.left);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(corridorLength, 0, -200);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(corridorLength, 49, -200);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(corridorLength, 49, 200);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(corridorLength, 0, 200);
+	glEnd();
+
+	
+}
+
+void draw_sky(Corridor corridor) {
+	glBindTexture(GL_TEXTURE_2D, corridor.sky);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(corridorLength+150, -corridorWidth*5, corridorHeight*5);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(corridorLength+150, corridorWidth*5, corridorHeight*5);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(corridorLength+150, corridorWidth*5, -corridorHeight*5);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(corridorLength+150, -corridorWidth*5, -corridorHeight*5);
+	glEnd();
+}
+
 void draw_walls(Corridor corridor) {
 	glBindTexture(GL_TEXTURE_2D, corridor.left);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -199,20 +287,7 @@ void draw_walls(Corridor corridor) {
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-corridorWidth, corridorWidth, -corridorWidth);
 	glEnd();
-
-	glBindTexture(GL_TEXTURE_2D, corridor.front);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0, 1.0);
-	glVertex3f(corridorLength, 0, corridorHeight);
-	glTexCoord2f(1.0, 0.0);
-	glVertex3f(corridorLength, corridorWidth, corridorHeight);
-	glTexCoord2f(0.0, 0.0);
-	glVertex3f(corridorLength, corridorWidth, -corridorHeight);
-	glTexCoord2f(0.0, 1.0);
-	glVertex3f(corridorLength, 0, -corridorHeight);
-	glEnd();
-
+	
 	glBindTexture(GL_TEXTURE_2D, corridor.back);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glBegin(GL_QUADS);
